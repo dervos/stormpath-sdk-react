@@ -1,13 +1,13 @@
 import { Route } from 'react-router';
 
-import context from './../context';
+import Context from './../Context';
 
 export default class LoginRoute extends Route {
   static defaultProps = {
     onEnter(nextState, replace, callback) {
-      context.userStore.isAuthenticated((err, authenticated) => {
+      Context.userStore.isAuthenticated((err, authenticated) => {
         if (authenticated) {
-          var router = context.getRouter();
+          var router = Context.getRouter();
           var homeRoute = router.getHomeRoute();
           var authenticatedHomeRoute = router.getAuthenticatedHomeRoute();
           var redirectTo = (authenticatedHomeRoute || {}).path || (homeRoute || {}).path || '/';

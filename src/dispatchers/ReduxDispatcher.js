@@ -1,4 +1,4 @@
-import context from './../context';
+import Context from './../Context';
 
 export default class ReduxDispatcher {
   constructor(reducer, store) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import utils from '../utils';
-import context from './../context';
+import Context from './../Context';
 import UserActions from '../actions/UserActions';
 
 class DefaultUserProfileForm extends React.Component {
@@ -79,20 +79,20 @@ class DefaultUserProfileForm extends React.Component {
 }
 
 export default class UserProfileForm extends React.Component {
-  static contextTypes = {
+  static ContextTypes = {
     user: React.PropTypes.object
   };
 
   state = {
     fields: {},
-    defaultFields: this.context.user,
+    defaultFields: this.Context.user,
     errorMessage: null,
     isFormProcessing: false,
     isFormSuccessful: false
   };
 
   _updateSessionData = (data, callback) => {
-    var sessionStore = context.sessionStore;
+    var sessionStore = Context.sessionStore;
 
     if (!sessionStore.empty()) {
       var hasChanged = false;
@@ -108,7 +108,7 @@ export default class UserProfileForm extends React.Component {
       }
 
       if (hasChanged) {
-        context.userStore.resolveSession(callback, true);
+        Context.userStore.resolveSession(callback, true);
       } else {
         callback();
       }

@@ -1,6 +1,6 @@
 import app from './app';
 
-export context from './context';
+export Context from './Context';
 export Router from './components/Router';
 
 export actions from './actions/UserActions';

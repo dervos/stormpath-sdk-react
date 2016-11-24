@@ -2,7 +2,7 @@ import React from 'react';
 import { Router as ReactRouter } from 'react-router';
 
 import utils from './../utils';
-import context from './../context';
+import Context from './../Context';
 
 import HomeRoute from './HomeRoute';
 import LoginRoute from './LoginRoute';
@@ -54,7 +54,7 @@ export default class Router extends ReactRouter {
 
     this.sessionChangeListener = this._setSessionState.bind(this);
 
-    context.setRouter(this);
+    Context.setRouter(this);
   }
 
   _mapMarkedRoutes(routes) {
@@ -106,13 +106,13 @@ export default class Router extends ReactRouter {
   }
 
   componentDidMount() {
-    this._setSessionState(context.sessionStore.get());
-    context.sessionStore.addListener('changed', this.sessionChangeListener);
+    this._setSessionState(Context.sessionStore.get());
+    Context.sessionStore.addListener('changed', this.sessionChangeListener);
   }
 
   componentWillUnmount() {
     super.componentWillUnmount();
-    context.sessionStore.removeListener('changed', this.sessionChangeListener);
+    Context.sessionStore.removeListener('changed', this.sessionChangeListener);
   }
 
   getChildContext() {

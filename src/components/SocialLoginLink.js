@@ -1,7 +1,7 @@
 import React from 'react';
 
 import utils from '../utils';
-import context from './../context';
+import Context from './../Context';
 
 let providerAuthorizationUris = {
   github: 'https://github.com/login/oauth/authorize',
@@ -72,7 +72,7 @@ export default class SocialLoginLink extends React.Component {
 
       var providerId = this.props.providerId;
 
-      context.userStore.getLoginViewData((err, result) => {
+      Context.userStore.getLoginViewData((err, result) => {
         if (err) {
           return console.error('Error: Unable to retrieve login view data.');
         }

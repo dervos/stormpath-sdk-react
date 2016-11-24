@@ -6,7 +6,7 @@ import { UserStore, SessionStore, TokenStore } from './stores';
 import { FluxDispatcher, ReduxDispatcher } from './dispatchers';
 
 import utils from './utils';
-import context from './context';
+import Context from './Context';
 
 class App extends EventEmitter {
   constructor() {
@@ -53,9 +53,9 @@ class App extends EventEmitter {
 
     let userStore = new UserStore(userService, sessionStore);
 
-    context.setTokenStore(tokenStore);
-    context.setSessionStore(sessionStore);
-    context.setUserStore(userStore);
+    Context.setTokenStore(tokenStore);
+    Context.setSessionStore(sessionStore);
+    Context.setUserStore(userStore);
 
     // If there's no specified dispatcher, then default to flux.
     let dispatcher = options.dispatcher || { type: 'flux' };
@@ -112,7 +112,7 @@ class App extends EventEmitter {
         throw new Error('Stormpath SDK: Invalid dispatcher type ' + dispatcher.type);
     }
 
-    context.setDispatcher(dispatcher);
+    Context.setDispatcher(dispatcher);
   }
 }
 

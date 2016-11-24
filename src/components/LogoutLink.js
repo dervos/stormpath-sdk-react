@@ -1,11 +1,11 @@
 import React from 'react';
 
 import utils from './../utils';
-import context from './../context';
+import Context from './../Context';
 import UserActions from './../actions/UserActions';
 
 export default class LogoutLink extends React.Component {
-  static contextTypes = {
+  static ContextTypes = {
     router: React.PropTypes.object.isRequired
   };
 
@@ -14,12 +14,12 @@ export default class LogoutLink extends React.Component {
   };
 
   _performRedirect(primaryRedirectTo) {
-    var router = context.getRouter();
+    var router = Context.getRouter();
     var homeRoute = router.getHomeRoute();
     var loginRoute = router.getLoginRoute();
     var redirectTo = primaryRedirectTo || (homeRoute || {}).path || (loginRoute || {}).path || '/';
 
-    this.context.router.push(redirectTo);
+    this.Context.router.push(redirectTo);
   }
 
   onClick(e) {

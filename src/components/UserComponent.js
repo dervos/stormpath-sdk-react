@@ -1,13 +1,13 @@
 import React from 'react';
 import utils from '../utils';
-import context from '../context';
+import Context from '../Context';
 
 export default class UserComponent extends React.Component {
   onChangeListener = null;
 
   constructor() {
     super(...arguments);
-    utils.logWarning('The UserComponent class has been deprecated. Please use the user context instead. See: https://github.com/stormpath/stormpath-sdk-react/blob/master/docs/api.md#contexts');
+    utils.logWarning('The UserComponent class has been deprecated. Please use the user Context instead. See: https://github.com/stormpath/stormpath-sdk-react/blob/master/docs/api.md#Contexts');
   }
 
   state = {
@@ -15,7 +15,7 @@ export default class UserComponent extends React.Component {
   };
 
   onChange() {
-    context.userStore.resolveSession((err, user) => {
+    Context.userStore.resolveSession((err, user) => {
       if (this.onChangeListener !== null) {
         this.setState({ user: user });
       }
@@ -24,12 +24,12 @@ export default class UserComponent extends React.Component {
 
   componentDidMount() {
     this.onChangeListener = this.onChange.bind(this);
-    context.userStore.addChangeListener(this.onChangeListener);
+    Context.userStore.addChangeListener(this.onChangeListener);
     this.onChange();
   }
 
   componentWillUnmount() {
-    context.userStore.removeChangeListener(this.onChangeListener);
+    Context.userStore.removeChangeListener(this.onChangeListener);
     this.onChangeListener = null;
   }
 }

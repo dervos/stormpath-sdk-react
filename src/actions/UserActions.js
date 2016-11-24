@@ -1,9 +1,9 @@
-import context from './../context';
+import Context from './../Context';
 import UserConstants from './../constants/UserConstants';
 
 function dispatch(event) {
   setTimeout(() => {
-    context.getDispatcher().dispatch(event);
+    Context.getDispatcher().dispatch(event);
   }, 0);
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import utils from '../utils';
-import context from './../context';
+import Context from './../Context';
 
 import LoginLink from '../components/LoginLink';
 import UserActions from '../actions/UserActions';
@@ -51,7 +51,7 @@ class DefaultRegistrationForm extends React.Component {
       }
     ];
 
-    context.userStore.getRegisterViewData((err, data) => {
+    Context.userStore.getRegisterViewData((err, data) => {
       var fields = null;
       var socialProviders = null;
 
@@ -166,7 +166,7 @@ class DefaultRegistrationForm extends React.Component {
 }
 
 export default class RegistrationForm extends React.Component {
-  static contextTypes = {
+  static ContextTypes = {
     router: React.PropTypes.object.isRequired
   };
 
@@ -288,12 +288,12 @@ export default class RegistrationForm extends React.Component {
   }
 
   _performRedirect(primaryRedirectTo) {
-    var router = context.getRouter();
+    var router = Context.getRouter();
     var homeRoute = router.getHomeRoute();
     var authenticatedHomeRoute = router.getAuthenticatedHomeRoute();
     var redirectTo = primaryRedirectTo || (authenticatedHomeRoute || {}).path || (homeRoute || {}).path || '/';
 
-    this.context.router.push(redirectTo);
+    this.Context.router.push(redirectTo);
   }
 
   _mapFormFieldHandler(element, tryMapField) {

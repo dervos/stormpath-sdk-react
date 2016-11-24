@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import utils from '../utils';
-import context from '../context';
+import Context from '../Context';
 
 import UserActions from '../actions/UserActions';
 import LoadingText from '../components/LoadingText';
@@ -35,7 +35,7 @@ class DefaultLoginForm extends React.Component {
       }
     ];
 
-    context.userStore.getLoginViewData((err, data) => {
+    Context.userStore.getLoginViewData((err, data) => {
       var fields = null;
       var socialProviders = null;
 
@@ -138,7 +138,7 @@ class DefaultLoginForm extends React.Component {
 }
 
 export default class LoginForm extends React.Component {
-  static contextTypes = {
+  static ContextTypes = {
     router: React.PropTypes.object.isRequired
   };
 
@@ -223,12 +223,12 @@ export default class LoginForm extends React.Component {
   }
 
   _performRedirect(primaryRedirectTo) {
-    var router = context.getRouter();
+    var router = Context.getRouter();
     var homeRoute = router.getHomeRoute();
     var authenticatedHomeRoute = router.getAuthenticatedHomeRoute();
     var redirectTo = primaryRedirectTo || (authenticatedHomeRoute || {}).path || (homeRoute || {}).path || '/';
 
-    this.context.router.push(redirectTo);
+    this.Context.router.push(redirectTo);
   }
 
   _mapFormFieldHandler(element, tryMapField) {
